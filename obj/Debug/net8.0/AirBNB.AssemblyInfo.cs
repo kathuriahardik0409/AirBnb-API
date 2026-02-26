@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AirBNB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11138746e6e92a2ba9ac62a987e0a6491f501f9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("AirBNB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AirBNB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

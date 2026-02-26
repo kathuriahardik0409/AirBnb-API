@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 
 
 builder.Services.AddScoped<IHotelRepository , HotelRepository>();
+builder.Services.AddScoped<IContactInfoRepository , ContactInfoRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

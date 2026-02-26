@@ -8,18 +8,21 @@ using AirBNB.Models.Domain;
 using AirBNB.Models.DTO;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace AirBNB.Repository
 {
     public class HotelRepository : IHotelRepository
     {
         private readonly AppDbContext context;
+        private readonly IContactInfoRepository contactInfoRepository;
 
 
         //Constructor
-        public HotelRepository(AppDbContext context)
+        public HotelRepository(AppDbContext context, IContactInfoRepository contactInfoRepository)
         {
             this.context = context;
+            this.contactInfoRepository = contactInfoRepository;
         }
 
         public async Task<Hotel?> ActivateHotel(long id)
@@ -44,20 +47,38 @@ namespace AirBNB.Repository
                 return null;
             }
 
-            var hotel = new Hotel
+            var contactInfo = new CreateContactInfoDto
             {
-                City = createHotelDto.City,
-                ContactInfoId = createHotelDto.ContactInfoId,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                Amenities = amenities,
-                Active = createHotelDto.Active,
+                Address = createHotelDto.Address,
+                Location = createHotelDto.Location,
+                Email = createHotelDto.Email,
+                Phone = createHotelDto.PhoneNumber
             };
 
-            await context.Hotels.AddAsync(hotel);
-            await context.SaveChangesAsync();
+            var obj = await contactInfoRepository.CreateContactInfo(contactInfo);
 
-            return hotel;
+            if (obj == null)
+            {
+                return null;
+            }
+
+            else
+            {
+                var hotel = new Hotel
+                {
+                    City = createHotelDto.City,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    Amenities = amenities,
+                    Active = createHotelDto.Active,
+                    ContactInfoId = obj.Id
+                };
+
+                await context.Hotels.AddAsync(hotel);
+                await context.SaveChangesAsync();
+                return hotel;
+            }
+            
         }
 
         public async Task<Hotel?> DeleteHotel(long id)

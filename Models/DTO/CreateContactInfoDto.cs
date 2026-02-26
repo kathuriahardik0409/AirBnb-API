@@ -4,13 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AirBNB.Models.Domain
+namespace AirBNB.Models.DTO
 {
-    public class ContactInfo
+    public class CreateContactInfoDto
     {
-        [Key]
-        public long Id{get;set;}
-
         [Required]
         public string? Address{get;set;}
 

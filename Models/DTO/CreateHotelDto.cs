@@ -19,5 +19,17 @@ namespace AirBNB.Models.DTO
 
         [Required]
         public bool Active{get;set;}
+
+        [Required]
+        public string? Address {get;set;}
+
+        [Required]
+        public string? Location{get;set;}
+
+        [Required]
+        public string? Email{get;set;}
+
+        [Required]
+        public string? PhoneNumber{get;set;}
     }
 }

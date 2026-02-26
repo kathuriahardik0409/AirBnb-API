@@ -141,6 +141,8 @@ namespace AirBNB.Controllers
                 Amenities = hotelDomain.Amenities.Select(a => a.Name).ToList(),
             };
 
+
+
             return Ok(hotelDto);
         }
 
