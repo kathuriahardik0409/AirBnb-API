@@ -69,6 +69,7 @@ namespace AirBNB.Controllers
             return Ok(hotelDto);
         }
 
+        //Delete Hotel
         [HttpDelete]
         [Route("{id:long}")]
         public async Task<IActionResult> DeleteHotel(long id)
@@ -83,6 +84,7 @@ namespace AirBNB.Controllers
             return Ok();
         }
 
+        //Activate Hotel: Set active column to true
         [HttpPatch]
         [Route("{id:long}")]
         public async Task<IActionResult> ActivateHotel(long id)
@@ -97,6 +99,7 @@ namespace AirBNB.Controllers
             return Ok();
         }
 
+        //Update Hotel
         [HttpPut]
         [Route("{id:long}")]
         public async Task<IActionResult> UpdateHotel([FromRoute] long id, [FromBody] UpdateHotelDto updateHotelDto)
@@ -120,6 +123,7 @@ namespace AirBNB.Controllers
             return Ok(hotelDto);
         }
 
+        //Create a new hotel record.
         [HttpPost]
         public async Task<IActionResult> CreateHotel([FromBody] CreateHotelDto createHotelDto)
         {
@@ -129,7 +133,7 @@ namespace AirBNB.Controllers
             {
                 return BadRequest("Failed to Create Hotel");
             }
-            
+
             var hotelDto = new HotelDto
             {
                 Id = hotelDomain.Id,
