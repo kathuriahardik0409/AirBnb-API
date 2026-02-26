@@ -1,0 +1,6 @@
+@AirBNB_HostAddress = http://localhost:5104
+
+GET {{AirBNB_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
